@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-import siteList from './components/siteList.jsx';
-import tagList from './components/tagList.jsx';
+import SiteList from './components/SiteList.jsx';
+import TagList from './components/TagList.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +11,7 @@ class App extends React.Component {
       tags: [],
       sites: []
     }
+    this.onTagClick = this.onTagClick.bind(this);
   }
 
   componentDidMount() {
@@ -20,35 +21,37 @@ class App extends React.Component {
 
   getSites () {
     $.get('/sites', {})
-      .done(results => this.setState(sites=JSON.parse(results)))
+      .done(results => this.setState(JSON.parse(results)))
       .fail(err => console.error('Failed to get sites', err))
   }
 
   getTags () {
     $.get('/tags', {})
-      .done(results => this.setState(tags=JSON.parse(results)))
+      .done(results => this.setState(JSON.parse(results)))
       .fail(err => console.error('Failed to get tags', err))
   }
 
-  onClickTag (tagId) {
+  onTagClick (tagId) {
     console.log('Clicked tag id ', tagId)
   }
 
   render () {
     return (
       <div>
-        <table style="width:100%">
-          <tr>
-            <td>
-              <siteList sites={ this.state.sites }/>
-            </td>
-            <td>
-              <tagList 
-                tags={ this.state.tags }
-                onClickTag={ this.onClickTag.bind(this) } 
-              />
-            </td>
-          </tr>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <SiteList sites={ this.state.sites }/>
+              </td>
+              <td>
+                <TagList 
+                  tags={ this.state.tags }
+                  onTagClick={ this.onTagClick.bind(this) } 
+                />
+              </td>
+            </tr>
+          </tbody>
         </table>
       </div>
     )

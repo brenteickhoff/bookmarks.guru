@@ -1,26 +1,26 @@
 import React from 'react';
-import siteListItem from './siteListItem.jsx';
+import SiteListItem from './SiteListItem.jsx';
 
-class siteList extends React.Component {
+class SiteList extends React.Component {
   constructor(props) {
     super(props); 
   }
 
   render() {
     return (
-      <div>
+      <div id="siteList" className="siteList">
         <h3> Site List </h3>
         There are { this.props.sites.length } sites.
         <ul>  
           { this.props.sites.map(site => 
-            <li>
-              <siteListItem site={ site }/>
+            <li key={ site.id } >
+              <SiteListItem site={ site }/>
             </li>
           )}
         </ul>
       </div>
     )
   }
-}
+} 
 
-export default siteList;
+export default SiteList; 

@@ -1,13 +1,13 @@
 import React from 'react';
 
-class siteListItem extends React.Component {
+class SiteListItem extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <div id={'site' + this.props.site.id } class="siteListItem">
+      <div id={'site' + this.props.site.id } className="siteListItem">
         <a href={ this.props.site.url }>
           { this.props.site.name } | { this.props.site.url }
         </a>
@@ -16,4 +16,4 @@ class siteListItem extends React.Component {
   }
 }
 
-export default siteListItem;
+export default SiteListItem;

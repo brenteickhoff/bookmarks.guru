@@ -4,9 +4,9 @@
 
 -- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- SET FOREIGN_KEY_CHECKS=0;
-DROP DATABASE IF EXISTS guru;
-CREATE DATABASE guru;
-USE guru;
+DROP DATABASE IF EXISTS Guru;
+CREATE DATABASE Guru;
+USE Guru;
 
 
 -- ---
@@ -15,7 +15,7 @@ USE guru;
 
 DROP TABLE IF EXISTS `site`;
     
-CREATE TABLE `site` (
+CREATE TABLE `Site` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NULL DEFAULT NULL,
   `title` VARCHAR(255) NULL DEFAULT NULL,
@@ -30,7 +30,7 @@ CREATE TABLE `site` (
 
 DROP TABLE IF EXISTS `tag`;
     
-CREATE TABLE `tag` (
+CREATE TABLE `Tag` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`id`)
@@ -43,7 +43,7 @@ CREATE TABLE `tag` (
 
 DROP TABLE IF EXISTS `site-tag`;
     
-CREATE TABLE `site_tag` (
+CREATE TABLE `Site_Tag` (
   `id` INTEGER NOT NULL AUTO_INCREMENT,
   `id_site` INTEGER NOT NULL,
   `id_tag` INTEGER NOT NULL,
@@ -54,8 +54,8 @@ CREATE TABLE `site_tag` (
 -- Foreign Keys 
 -- ---
 
-ALTER TABLE `site_tag` ADD FOREIGN KEY (id_site) REFERENCES `site` (`id`);
-ALTER TABLE `site_tag` ADD FOREIGN KEY (id_tag) REFERENCES `tag` (`id`);
+ALTER TABLE `Site_Tag` ADD FOREIGN KEY (id_site) REFERENCES `Site` (`id`);
+ALTER TABLE `Site_Tag` ADD FOREIGN KEY (id_tag) REFERENCES `Tag` (`id`);
 
 -- ---
 -- Table Properties

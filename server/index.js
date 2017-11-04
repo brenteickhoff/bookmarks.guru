@@ -9,12 +9,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 app.listen(port, () => (console.log('Listening on port:', port)));
 
-// app.get('/items', function (req, res) {
-//   items.selectAll(function(err, data) {
-//     if(err) {
-//       res.sendStatus(500);
-//     } else {
-//       res.json(data);
-//     }
-//   });
-// });  
+app.get('/sites', (req, res) =>
+  db.getSites((err, dbRows) => 
+    res.status(200).send(JSON.stringify({sites: dbRows}))
+  )
+);
+
+app.get('/tags', (req, res) =>
+  db.getTags((err, dbRows) => 
+    res.status(200).send(JSON.stringify({tags: dbRows}))
+  )
+);
+
+
+
+ 

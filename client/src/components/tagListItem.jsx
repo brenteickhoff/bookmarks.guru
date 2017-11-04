@@ -1,9 +1,9 @@
 import React from 'react';
 
-class tagListItem extends React.Component {
+class TagListItem extends React.Component {
   constructor(props) {
     super(props);
-    this.onTagClick  = this.onTagClick.bind(this);
+    this.onTagClick = this.onTagClick.bind(this);
   }
 
   onTagClick(tagId) {
@@ -12,8 +12,8 @@ class tagListItem extends React.Component {
 
   render() {
     return (
-      <div id={'tag' + this.props.tag.id } class="tagListItem">
-        <a href="" onClick={ this.onTagClick.bind(this, this.props.tag.id) }>
+      <div id={'tag' + this.props.tag.id } className="tagListItem">
+        <a onClick={ this.onTagClick.bind(this, this.props.tag.id) }>
           { this.props.tag.name }
         </a>
       </div>
@@ -21,4 +21,4 @@ class tagListItem extends React.Component {
   }
 }
 
-export default tagListItem;
+export default TagListItem;
