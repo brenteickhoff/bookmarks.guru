@@ -19,6 +19,16 @@ app.post('/addTag', (req, res) => {
   });
 });
 
+app.post('/addSite', (req, res) => {
+  console.log('server post site', req.body)
+  var siteObj = req.body;
+  db.addSite(siteObj,(err, dbRows) => {
+    db.getSites((err, dbRows) => {
+      res.status(200).send(JSON.stringify({sites: dbRows}))
+    });
+  });
+});
+
 app.get('/sites', (req, res) => {
   console.log('server get sites by tag id', req.query.tagId);
 

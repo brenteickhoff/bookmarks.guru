@@ -44,6 +44,14 @@ class App extends React.Component {
       .fail(err => console.error('Failed to find user', err))
   }
 
+  addSite(siteObj) {
+    console.log('siteObj', siteObj)
+    this.toggleAddingSite();
+    $.post('/addSite', siteObj)
+      .done(results => this.setState(JSON.parse(results)))
+      .fail(err => console.error('Failed to find user', err))
+  }
+
   onTagClick (tagId) {
     console.log('Clicked tag id ', tagId)
     this.getSites (tagId);
@@ -66,19 +74,23 @@ class App extends React.Component {
             <tr>
               <td>
                 <TagAdd onAddTagButtonClick={ this.addTag.bind(this) }/> 
+              </td>
+              <td>
+                {!this.state.addingSite ? 
+                  <button onClick={ this.toggleAddingSite } >Add Site</button> :
+                <p> Add site below: </p>}
+              </td>
+            </tr>
+            <tr>
+              <td>
                 <TagList tags={ this.state.tags }
                   onTagClick={ this.onTagClick.bind(this) } />
               </td>
               <td>
-                <button onClick={ this.toggleAddingSite } >
-                  {this.state.addingSite ? 'Save Site' : 'Add Site' }
-                </button>
-
-                {this.state.addingSite ? 
-                  <SiteAdd /> :                
+                { this.state.addingSite ? 
+                  <SiteAdd onSaveSiteButtonClick={ this.addSite.bind(this) }/> :                
                   <SiteList sites={ this.state.sites }/>
                 }
-
               </td>
             </tr>
           </tbody>

@@ -38,6 +38,15 @@ console.log('insert tagname', tagName)
   });
 }; 
 
+module.exports.addSite = (site, callback) => {
+console.log('insert tagname', site)
+  var sql = `INSERT INTO Site (name, title, url) VALUES ("${ site.siteName }", "", "${ site.siteUrl }" )`;
+console.log(sql)
+  db.query(sql, (err, rows, fields) => {
+  console.log('error', err, 'rows', rows, 'fields', fields) ;
+  callback(err, rows);
+  });
+}; 
 
 
 
