@@ -9,8 +9,7 @@ class SiteList extends React.Component {
   render() {
     return (
       <div id="siteList" className="siteList">
-        <h3> Site List </h3>
-        There are { this.props.sites.length } sites.
+        <h3>Sites</h3>
         <ul>  
           { this.props.sites.map(site => 
             <li key={ site.id } >

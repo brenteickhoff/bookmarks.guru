@@ -9,25 +9,18 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/../client/dist'));
 app.listen(port, () => (console.log('Listening on port:', port)));
 
-// app.get('/sites', (req, res) => {
-//   // if (!req.query.tagId) {
-//     db.getSites((err, dbRows) => 
-//       res.status(200).send(JSON.stringify({sites: dbRows}))
-//     )
-//   // } else {
-//   //   db.getSitesByTagId(req.query.tagId, (err, dbRows) => 
-//   //     res.status(200).send(JSON.stringify({sites: dbRows}))
-//   //   )
-// });
-
-
-//   db.getSites((err, dbRows) => 
-//     res.status(200).send(JSON.stringify({sites: dbRows}))
-//   )
-// });
+app.post('/addTag', (req, res) => {
+  console.log('server post addtagname', req.body.tagName)
+  var tagName = req.body.tagName;
+  db.addTag(tagName,(err, dbRows) => {
+    db.getTags((err, dbRows) => {
+      res.status(200).send(JSON.stringify({tags: dbRows}))
+    });
+  });
+});
 
 app.get('/sites', (req, res) => {
-  console.log('server get sites by tag id', req.query.tagId)
+  console.log('server get sites by tag id', req.query.tagId);
 
   if (!req.query.tagId) {
     db.getSites((err, dbRows) => {

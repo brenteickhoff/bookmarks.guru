@@ -12,11 +12,11 @@ class App extends React.Component {
     this.state = { 
       tags: [],
       sites: [],
-      adding: false,
-
+      addingSite: false,
+      addTagName: '',
     }
-    this.onTagClick = this.onTagClick.bind(this);
-    this.toggleAdding = this.toggleAdding.bind(this);
+
+    this.toggleAddingSite = this.toggleAddingSite.bind(this);
   }
 
   componentDidMount () {
@@ -31,17 +31,17 @@ class App extends React.Component {
       .fail(err => console.error('Failed to get sites', err))
   }
 
-  // getSites () {
-
-  //   $.get('/sites', {}) 
-  //     .done(results => this.setState(JSON.parse(results)))
-  //     .fail(err => console.error('Failed to get sites', err))
-  // }
-
   getTags () {
     $.get('/tags', {})
       .done(results => this.setState(JSON.parse(results)))
       .fail(err => console.error('Failed to get tags', err))
+  }
+
+  addTag(tagName) {
+    console.log('tagname', tagName)
+    $.post('/addTag', {tagName: tagName})
+      .done(results => this.setState(JSON.parse(results)))
+      .fail(err => console.error('Failed to find user', err))
   }
 
   onTagClick (tagId) {
@@ -49,13 +49,15 @@ class App extends React.Component {
     this.getSites (tagId);
   }
 
-  toggleAdding () {
-    this.setState({adding: !this.state.adding});
+  toggleAddingSite () {
+    this.setState({addingSite: !this.state.addingSite});
   }
 
-  render () {
-    return (
 
+
+  render () {
+
+    return (
       <div>
         <h1>Bookmarks Guru</h1>
         <h2>www.bookmaks.guru</h2>
@@ -63,21 +65,25 @@ class App extends React.Component {
           <tbody>
             <tr>
               <td>
-                <TagList 
-                  tags={ this.state.tags }
-                  onTagClick={ this.onTagClick.bind(this) } 
-                />
+                <TagAdd onAddTagButtonClick={ this.addTag.bind(this) }/> 
+                <TagList tags={ this.state.tags }
+                  onTagClick={ this.onTagClick.bind(this) } />
               </td>
               <td>
-                {this.state.adding ? 
+                <button onClick={ this.toggleAddingSite } >
+                  {this.state.addingSite ? 'Save Site' : 'Add Site' }
+                </button>
+
+                {this.state.addingSite ? 
                   <SiteAdd /> :                
                   <SiteList sites={ this.state.sites }/>
                 }
+
               </td>
             </tr>
           </tbody>
         </table>
-        <button onClick={ this.toggleAdding } >Toggle Adding</button>
+        
       </div>
     )
   }

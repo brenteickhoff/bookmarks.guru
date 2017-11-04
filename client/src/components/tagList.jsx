@@ -17,8 +17,7 @@ class TagList extends React.Component {
   render() {
     return (
       <div id="tagList" className="tagList">
-        <h3> Tag List </h3>
-        There are { this.props.tags.length } tags.
+        <h3>Tags</h3>
         <ul>
           { this.props.tags.map(tag => 
             <li key={ tag.id } >

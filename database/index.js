@@ -27,3 +27,22 @@ module.exports.getTags = (callback) => {
   var sql = 'SELECT * FROM Tag';
   db.query(sql, (err, rows, fields) => callback(err, rows));
 }; 
+
+module.exports.addTag = (tagName, callback) => {
+console.log('insert tagname', tagName)
+  var sql = `INSERT INTO Tag (name) VALUES ("${ tagName }")`;
+
+  db.query(sql, (err, rows, fields) => {
+  console.log('error', err, 'rows', rows, 'fields', fields) ;
+  callback(err, rows);
+  });
+}; 
+
+
+
+
+
+
+
+
+
