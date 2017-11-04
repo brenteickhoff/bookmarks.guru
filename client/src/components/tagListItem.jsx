@@ -6,14 +6,15 @@ class TagListItem extends React.Component {
     this.onTagClick = this.onTagClick.bind(this);
   }
 
-  onTagClick(tagId) {
-    this.props.onTagClick(tagId);
+  onTagClick(e) {
+    e.preventDefault();
+    this.props.onTagClick(this.props.tag.id);
   }
 
   render() {
     return (
       <div id={'tag' + this.props.tag.id } className="tagListItem">
-        <a onClick={ this.onTagClick.bind(this, this.props.tag.id) }>
+        <a  onClick={ this.onTagClick }>
           { this.props.tag.name }
         </a>
       </div>

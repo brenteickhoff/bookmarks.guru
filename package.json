@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "react": "webpack -d --watch",
-    "server": "nodemon server/index.js"
+    "server": "nodemon server/index.js",
+    "db": "mysql <database/schema.sql"
   },
   "repository": {
     "type": "git",
@@ -21,11 +22,11 @@
   "homepage": "https://github.com/brenteickhoff/hrla18-mvp#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
-    "bootstrap": "^3.3.7",
     "express": "^4.16.2",
     "jquery": "^3.2.1",
     "mysql": "^2.15.0",
     "react": "^16.0.0",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.0.0"
   },
   "devDependencies": {

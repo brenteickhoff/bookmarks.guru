@@ -8,7 +8,7 @@ class SiteAdd extends React.Component {
   render() {
     return (
       <div>
-
+        in Site Add
       </div>
     ) 
   }

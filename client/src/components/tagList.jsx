@@ -23,7 +23,7 @@ class TagList extends React.Component {
           { this.props.tags.map(tag => 
             <li key={ tag.id } >
               <TagListItem tag={ tag } 
-                onTagClick={ this.onTagClick.bind(this) }
+                onTagClick={ this.onTagClick }
               />
             </li>
           )}
